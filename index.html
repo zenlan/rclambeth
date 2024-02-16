@@ -28,7 +28,7 @@
             <div class="hero-head"></div>
             <div class="hero-body">
                 <div class="columns is-mobile">
-                    <div id="main" class="column">%row</div>
+                    <div id="main" class="column"></div>
                 </div>
             </div>
             <div class="hero-foot"></div>
@@ -37,10 +37,8 @@
     <script>
         document.addEventListener(`DOMContentLoaded`, async () => {
 
-            async function logMovies() {
-                const response = await fetch("https://restarters.net/api/v2/groups/891");
-                const stats = await response.json();
-                console.log(stats);
-            }
+            const response = await fetch("https://restarters.net/api/v2/groups/891");
+            const stats = await response.json();
+            console.log(stats);
         }, false);
     </script>
