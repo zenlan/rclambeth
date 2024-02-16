@@ -20,17 +20,20 @@
 </head>
 
 <body>
-    <div id="wrapper" class="has-background-white-ter has-text-grey has-text-centered">
+    <div id="wrapper" class="has-background-black has-text-white-ter has-text-centered">
         <section class="">
             <div class="hero-body">
                 <div class="container is-size-6-mobile">
-                    <p><a id="website" href=""></a></p>
-                    <p>Events: <span id="events"></span> </p>
-                    <p>Fixed things: <span id="fixed"></span> </p>
-                    <p>Emissions: <span id="co2_total"></span> </p>
-                    <p>Waste: <span id="waste_total"></span> </p>
-                    <p><a id="next" href="">Next Event</a></p>
+                    <p id="name"></p>
+                    <p><a id="website" href="">Website</a></p>
+                    <p>Fixing parties: <span id="events"></span> </p>
+                    <p>Things fixed: <span id="fixed"></span> </p>
+                    <p>CO2 saved: <span id="co2_total"></span> </p>
+                    <p>Landfill saved: <span id="waste_total"></span> </p>
+                    <p>Next event:</p>
+                    <p id="next"></p>
                     <p>336 Brixton Rd, London SW9 7AA, UK</p>
+                    <p><a id="next-link" href=""></a></p>
                 </div>
             </div>
         </section>
@@ -41,10 +44,12 @@
 
             const data = response["data"]
             const d = new Date(data["next_event"]["start"]);
-            document.getElementById("website").innerHTML = data["name"];
+            document.getElementById("name").innerHTML = data["name"];
+            document.getElementById("website").innerHTML = data["website"];
             document.getElementById("website").href = data["website"];
-            document.getElementById("next").href = "https://restarters.net/party/view/" + data["next_event"]["id"];
-            document.getElementById("next").innerHTML = "Next Event: " + d.toDateString();
+            document.getElementById("next").innerHTML = d.toDateString() + " 10am-2pm";
+            document.getElementById("next-link").href = "https://restarters.net/party/view/" + data["next_event"]["id"];
+            document.getElementById("next-link").innerHTML = "https://restarters.net/party/view/" + data["next_event"]["id"];
 
             document.getElementById("events").innerHTML = data["stats"]["events"];
             document.getElementById("fixed").innerHTML = data["stats"]["fixed_devices"];
