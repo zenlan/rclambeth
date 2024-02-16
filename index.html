@@ -24,6 +24,13 @@
         <section class="">
             <div class="hero-body">
                 <div class="container is-size-6-mobile">
+                    <p><a id="website" href=""></a></p>
+                    <p>Events: <span id="events"></span> </p>
+                    <p>Fixed things: <span id="fixed"></span> </p>
+                    <p>Emissions: <span id="co2_total"></span> </p>
+                    <p>Waste: <span id="waste_total"></span> </p>
+                    <p><a id="next" href="">Next Event</a></p>
+                    <p>336 Brixton Rd, London SW9 7AA, UK</p>
                 </div>
             </div>
         </section>
@@ -32,7 +39,17 @@
     <script>
         document.addEventListener(`DOMContentLoaded`, async () => {
 
-            console.log(data);
+            const data = response["data"]
+            const d = new Date(data["next_event"]["start"]);
+            document.getElementById("website").innerHTML = data["name"];
+            document.getElementById("website").href = data["website"];
+            document.getElementById("next").href = "https://restarters.net/party/view/" + data["next_event"]["id"];
+            document.getElementById("next").innerHTML = "Next Event: " + d.toDateString();
+
+            document.getElementById("events").innerHTML = data["stats"]["events"];
+            document.getElementById("fixed").innerHTML = data["stats"]["fixed_devices"];
+            document.getElementById("co2_total").innerHTML = Math.round(data["stats"]["co2_total"]) + ' kg';
+            document.getElementById("waste_total").innerHTML = Math.round(data["stats"]["waste_total"]) + ' kg';
 
             // fetch('https://restarters.net/api/v2/groups/891',
             //     {
