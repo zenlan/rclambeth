@@ -1,81 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="has-background-black has-text-white-ter">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Repair Cafe Lambeth</title>
+    <title>Repair Café Lambeth</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <style type="text/css" media="screen">
-        body {
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-
-        #wrapper {
-            flex: 1;
-        }
-    </style>
 </head>
 
 <body>
-    <div id="wrapper" class="has-background-black has-text-white-ter has-text-centered">
-        <section class="">
-            <div class="hero-body">
-                <div class="container is-size-6-mobile">
-                    <p id="name"></p>
-                    <p><a id="website" href="">Website</a></p>
-                    <p>Fixing parties: <span id="events"></span> </p>
-                    <p>Things fixed: <span id="fixed"></span> </p>
-                    <p>CO2 saved: <span id="co2_total"></span> </p>
-                    <p>Landfill saved: <span id="waste_total"></span> </p>
-                    <p>Next event:</p>
-                    <p id="next"></p>
-                    <p>336 Brixton Rd, London SW9 7AA, UK</p>
-                    <p><a id="next-link" href=""></a></p>
+    <div class="container py-2 has-background-black has-text-white-ter">
+        <div class="columns is-mobile">
+            <div class="column">
+                <div class="row pt-0 has-text-centered">
+                    <p class="title has-text-white-ter">Repair Café Lambeth</p>
+                </div>
+                <div class="row pt-2">
+                    <div class="columns is-2 is-mobile">
+                        <div class="column is-half is-size-6-mobile has-text-right">Events</div>
+                        <div class="column has-text-left"><span id="events"></span></div>
+                    </div>
+                </div>
+                <div class="row pt-0">
+                    <div class="columns is-2 is-variable is-mobile">
+                        <div class="column is-half is-size-6-mobile has-text-right">Things fixed</div>
+                        <div class="column has-text-left"><span id="fixed"></span></div>
+                    </div>
+                </div>
+                <div class="row pt-0">
+                    <div class="columns is-2 is-variable is-mobile">
+                        <div class="column is-half is-size-6-mobile has-text-right">CO2 saved</div>
+                        <div class="column has-text-left"><span id="co2_total"></span>&nbsp;kg</div>
+                    </div>
+                </div>
+                <div class="row pt-0">
+                    <div class="columns is-2 is-variable is-mobile">
+                        <div class="column is-half is-size-6-mobile has-text-right">Landfill saved</div>
+                        <div class="column has-text-left"><span id="waste_total"></span>&nbsp;kg</div>
+                    </div>
+                </div>
+                <div class="row pt-0 has-text-centered">
+                    <div class="columns is-2 is-variable is-mobile">
+                        <div class="column is-full"><span id="next"></span>&nbsp;10am-2pm</div>
+                    </div>
+                </div>
+                <div class="row pt-0 has-text-centered">
+                    <div class="columns is-mobile">
+                        <div class="column is-full">336 Brixton Rd, London SW9 7AA</div>
+                    </div>
+                </div>
+                <div class="row pt-0 has-text-centered">
+                    <div class="columns is-mobile">
+                        <div class="column is-full"><img src="891qr.png" /></div>
+                    </div>
+                </div>
+                <div class="row has-text-centered">
+                    <div class="columns is-mobile">
+                        <div class="column is-full">
+                            <a class="has-text-warning" target="_blank"
+                                href="https://www.repaircafe-lambeth.org/">https://www.repaircafe-lambeth.org/</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-    </div>
-    <script src="891.js"></script>
-    <script>
-        document.addEventListener(`DOMContentLoaded`, async () => {
+            <script src="891.js"></script>
+            <script>
+                document.addEventListener(`DOMContentLoaded`, async () => {
 
-            const data = response["data"]
-            const d = new Date(data["next_event"]["start"]);
-            document.getElementById("name").innerHTML = data["name"];
-            document.getElementById("website").innerHTML = data["website"];
-            document.getElementById("website").href = data["website"];
-            document.getElementById("next").innerHTML = d.toDateString() + " 10am-2pm";
-            document.getElementById("next-link").href = "https://restarters.net/party/view/" + data["next_event"]["id"];
-            document.getElementById("next-link").innerHTML = "https://restarters.net/party/view/" + data["next_event"]["id"];
+                    const data = response["data"]
+                    document.getElementById("next").innerHTML = (new Date(data["next_event"]["start"])).toDateString();
+                    document.getElementById("events").innerHTML = data["stats"]["events"];
+                    document.getElementById("fixed").innerHTML = data["stats"]["fixed_devices"];
+                    document.getElementById("co2_total").innerHTML = Math.round(data["stats"]["co2_total"]);
+                    document.getElementById("waste_total").innerHTML = Math.round(data["stats"]["waste_total"]);
 
-            document.getElementById("events").innerHTML = data["stats"]["events"];
-            document.getElementById("fixed").innerHTML = data["stats"]["fixed_devices"];
-            document.getElementById("co2_total").innerHTML = Math.round(data["stats"]["co2_total"]) + ' kg';
-            document.getElementById("waste_total").innerHTML = Math.round(data["stats"]["waste_total"]) + ' kg';
-
-            // fetch('https://restarters.net/api/v2/groups/891',
-            //     {
-            //         headers: {
-            //             "Accept": "application/json",
-            //         }
-            //     })
-            //     .then(response => {
-            //         if (!response.ok) {
-            //             throw new Error('Network response was not ok');
-            //         }
-            //         return response.json();
-            //     })
-            //     .then(data => {
-            //         console.log(data);
-            //     })
-            //     .catch(error => {
-            //         console.error('There was a problem with the fetch operation:', error);
-            //     });
-        }, false);
-    </script>
+                    // fetch('https://restarters.net/api/v2/groups/891',
+                    //     {
+                    //         headers: {
+                    //             "Accept": "application/json",
+                    //         }
+                    //     })
+                    //     .then(response => {
+                    //         if (!response.ok) {
+                    //             throw new Error('Network response was not ok');
+                    //         }
+                    //         return response.json();
+                    //     })
+                    //     .then(data => {
+                    //         console.log(data);
+                    //     })
+                    //     .catch(error => {
+                    //         console.error('There was a problem with the fetch operation:', error);
+                    //     });
+                }, false);
+            </script>
 </body>
 
 </html>
