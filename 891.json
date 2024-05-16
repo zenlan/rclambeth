@@ -24,12 +24,12 @@
             "no_weight_powered": 5,
             "no_weight_unpowered": 8,
             "participants": 2071,
-            "volunteers": 342,
-            "hours_volunteered": 1134,
+            "volunteers": 348,
+            "hours_volunteered": 1152,
             "invited": 0,
             "events": 12
         },
-        "updated_at": "2024-05-05T14:08:53+01:00",
+        "updated_at": "2024-05-05T20:50:59+01:00",
         "location": {
             "location": "336 Brixton Rd, London SW9 7AA, UK",
             "area": "London",
@@ -70,6 +70,14 @@
         "full": true,
         "email": null,
         "hosts": 1,
-        "restarters": 39
+        "restarters": 40,
+        "next_event": {
+            "id": 11052,
+            "start": "2024-06-01T09:00:00+00:00",
+            "end": "2024-06-01T12:00:00+00:00",
+            "timezone": "Europe/London",
+            "title": "We Are 336",
+            "summary": true
+        }
     }
 }
