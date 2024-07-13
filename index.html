@@ -63,44 +63,46 @@
                     </div>
                 </div>
             </div>
-            <script src="891.js"></script>
-            <script>
-                document.addEventListener(`DOMContentLoaded`, async () => {
+        </div>
+    </div>
+    <script src="891.js"></script>
+    <script>
+        document.addEventListener(`DOMContentLoaded`, async () => {
 
-                    const data = response["data"]
-                    if (data.hasOwnProperty("next_event")) {
-                        document.getElementById("next").innerHTML = (new Date(data["next_event"]["start"])).toDateString();
-                    } else {
-                        document.getElementById("next").innerHTML = "First Saturday each month"
-                    }
-                    document.getElementById("events").innerHTML = data["stats"]["events"];
-                    document.getElementById("fixed").innerHTML = data["stats"]["fixed_devices"];
-                    document.getElementById("co2_total").innerHTML = Math.round(data["stats"]["co2_total"]);
-                    document.getElementById("waste_total").innerHTML = Math.round(data["stats"]["waste_total"]);
+            const data = response["data"]
+            if (data.hasOwnProperty("next_event")) {
+                document.getElementById("next").innerHTML = (new Date(data["next_event"]["start"])).toDateString();
+            } else {
+                document.getElementById("next").innerHTML = "First Saturday each month"
+            }
+            document.getElementById("events").innerHTML = data["stats"]["events"];
+            document.getElementById("fixed").innerHTML = data["stats"]["fixed_devices"];
+            document.getElementById("co2_total").innerHTML = Math.round(data["stats"]["co2_total"]);
+            document.getElementById("waste_total").innerHTML = Math.round(data["stats"]["waste_total"]);
 
-                    // fetch('https:restarters.net/api/v2/groups/891',
-                    //     {
-                    //         headers: {
-                    //             "Accept": "application/json",
-                    //             "Sec-Fetch-Mode" : "no-cors",
-                    //             "Sec-Fetch-Site" : "cross-site",
-                    //             "Sec-Fetch-Dest": "object"
-                    //         }
-                    //     })
-                    //     .then(response => {
-                    //         if (!response.ok) {
-                    //             throw new Error('Network response was not ok');
-                    //         }
-                    //         return response.json();
-                    //     })
-                    //     .then(data => {
-                    //         console.log(data);
-                    //     })
-                    //     .catch(error => {
-                    //         console.error('There was a problem with the fetch operation:', error);
-                    //     });
-                }, false);
-            </script>
+            // fetch('https:restarters.net/api/v2/groups/891',
+            //     {
+            //         headers: {
+            //             "Accept": "application/json",
+            //             "Sec-Fetch-Mode" : "no-cors",
+            //             "Sec-Fetch-Site" : "cross-site",
+            //             "Sec-Fetch-Dest": "object"
+            //         }
+            //     })
+            //     .then(response => {
+            //         if (!response.ok) {
+            //             throw new Error('Network response was not ok');
+            //         }
+            //         return response.json();
+            //     })
+            //     .then(data => {
+            //         console.log(data);
+            //     })
+            //     .catch(error => {
+            //         console.error('There was a problem with the fetch operation:', error);
+            //     });
+        }, false);
+    </script>
 </body>
 
 </html>
