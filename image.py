@@ -1,21 +1,9 @@
 #!/usr/bin/ python3
 
-import os
 import json
-import logging
 import math
 from PIL import Image, ImageDraw, ImageFont
-
-
-def init_logger():
-    filename, file_ext = os.path.splitext(os.path.basename(__file__))
-    path = filename + ".log"
-    logger = logging.getLogger()
-    logger.setLevel(logging.DEBUG)
-    fh = logging.FileHandler(path, mode="w")
-    fh.setLevel(logging.DEBUG)
-    logger.addHandler(fh)
-    return logger
+import funcs
 
 
 def compile_lines(data):
@@ -26,7 +14,7 @@ def compile_lines(data):
     lines.append("One item per person please. No microwaves.")
     lines.append("www.repaircafe-lambeth.org")
     lines.append(
-        "{:,} kg of landfill and {:,} kg of CO2 prevented so far!".format(
+        "{:,} kg of landfill and {:,} kg of CO2 prevented!".format(
             math.ceil(data["stats"]["waste_total"]),
             math.ceil(data["stats"]["co2_total"]),
         )
@@ -147,7 +135,7 @@ def merge(im1, im2, where="r"):
 
 if __name__ == "__main__":
 
-    logger = init_logger()
+    logger = funcs.init_logger()
 
     data = json.load(open("891.json", "r"))["data"]
     lines = compile_lines(data)
