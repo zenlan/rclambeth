@@ -9,7 +9,7 @@ import funcs
 def compile_lines(data):
 
     lines = []
-    lines.append("First Saturday each month 10am-2pm - come early!")
+    lines.append("First Saturday each month 10am-1pm - come early!")
     lines.append("336 Brixton Rd, London SW9 7AA")
     lines.append("One item per person please. No microwaves.")
     lines.append("www.repaircafe-lambeth.org")
